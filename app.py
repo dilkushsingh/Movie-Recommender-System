@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import pickle
+import gdown 
 
 st.set_page_config(
     page_title="Movie Recommender System",
@@ -26,8 +27,12 @@ def recommend(movie):
 st.header('Movie Recommender System')
 
 movies = pickle.load(open('movies.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+# similarity = pickle.load(open('similarity.pkl', 'rb'))
 poster_paths = pickle.load(open('poster_paths.pkl', 'rb'))
+file_id = '1-67kqjkqa-U7QHjMKL_64wBdqJWV7OOh'
+url = f'https://drive.google.com/uc?id={file_id}'
+output = 'similarity.pkl'
+gdown.download(url, output, quiet=False)
 
 movies_list = movies['title'].values
 
